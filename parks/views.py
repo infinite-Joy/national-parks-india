@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 
 db = SQLAlchemy(app)
 
-BASECOORDS = [15.3173, 75.7139]
+BASECOORDS = [20.5937, 78.9629]
 
 class Point(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,7 +24,9 @@ class Point(db.Model):
         self.longitude_off = lng
 
     def __repr__(self):
-        return "<Point %d: Lat %s Lng %s>" % (self.id, self.latitude_off, self.longitude_off)
+        return "<Point %d: Lat %s Lng %s>" % (self.id,
+                                              self.latitude_off,
+                                              self.longitude_off)
 
     @property
     def latitude(self):
@@ -65,7 +67,9 @@ def make_random_data(db):
     NDISTRICTS = 5
     NPOINTS = 10
     for did in range(NDISTRICTS):
-        district = District(did, "District %d" % did, BASECOORDS[0], BASECOORDS[1])
+        district = District(did,
+                            "District %d" % did,
+                            BASECOORDS[0], BASECOORDS[1])
         db.session.add(district)
         for pid in range(NPOINTS):
             lat = random.random() - 0.5
