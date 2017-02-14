@@ -1,5 +1,6 @@
 import json
 
+
 def parks():
     """
     return the park name and the park coordinates
@@ -8,4 +9,4 @@ def parks():
     """
     with open("parks_info.json") as parksfile:
         parks_json = json.load(parksfile)
-        return parks_json
+    return parks_json
