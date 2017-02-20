@@ -1,7 +1,10 @@
 import sys
 import random
+
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
+
+from helpers import parks
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -63,20 +66,37 @@ def district(district_id):
     return jsonify({"data": coords})
 
 
-def make_random_data(db):
-    NDISTRICTS = 5
-    NPOINTS = 10
-    for did in range(NDISTRICTS):
+# def make_random_data(db):
+#     NDISTRICTS = 5
+#     NPOINTS = 10
+#     for did in range(NDISTRICTS):
+#         district = District(did,
+#                             "District %d" % did,
+#                             BASECOORDS[0], BASECOORDS[1])
+#         db.session.add(district)
+#         for pid in range(NPOINTS):
+#             lat = random.random() - 0.5
+#             lng = random.random() - 0.5
+#             row = Point(pid + NPOINTS * did, district, lat, lng)
+#             db.session.add(row)
+#     db.session.commit()
+
+def get_national_parks_data(db):
+    parks = parks()
+    district_count = 5
+    points = parks.keys()
+    number_points = len(points)
+    for did in range(district_count):
         district = District(did,
-                            "District %d" % did,
+                            "District {did}".format(did=did),
                             BASECOORDS[0], BASECOORDS[1])
         db.session.add(district)
-        for pid in range(NPOINTS):
-            lat = random.random() - 0.5
-            lng = random.random() - 0.5
-            row = Point(pid + NPOINTS * did, district, lat, lng)
+        for pid in points:
+            lat = parks[pid][0]
+            lng = parks[pid][1]
+            row = Point(pid + number_points * did, district, lat, lng)
             db.session.add(row)
-    db.session.commit()
+        db.session.commit()
 
 
 if __name__ == '__main__':
