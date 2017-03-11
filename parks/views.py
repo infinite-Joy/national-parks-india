@@ -82,9 +82,9 @@ def district(district_id):
 #     db.session.commit()
 
 def get_national_parks_data(db):
-    parks = parks()
-    district_count = 5
-    points = parks.keys()
+    parks_dict = parks()
+    district_count = 6
+    points = parks_dict.keys()
     number_points = len(points)
     for did in range(district_count):
         district = District(did,
@@ -92,8 +92,8 @@ def get_national_parks_data(db):
                             BASECOORDS[0], BASECOORDS[1])
         db.session.add(district)
         for pid in points:
-            lat = parks[pid][0]
-            lng = parks[pid][1]
+            lat = parks_dict.get(pid)[0]
+            lng = parks_dict.get(pid)[1]
             row = Point(pid + number_points * did, district, lat, lng)
             db.session.add(row)
         db.session.commit()
