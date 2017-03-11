@@ -103,6 +103,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         if sys.argv[1] == 'mkdb':
             db.create_all()
-            make_random_data(db)
+            # make_random_data(db)
+            get_national_parks_data(db)
     else:
         app.run(debug=True)
