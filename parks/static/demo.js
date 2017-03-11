@@ -1,7 +1,7 @@
 BASECOORDS = [15.3173, 75.7139]
 
 function makeMap() {
-    var ACCESS_TOKEN = 'pk.eyJ1Ijoiam95ZGVlcDMxNCIsImEiOiJjaXl5YWtlM2swMGptMnFvNjc4cTc2czcxIn0.r2KRezjQD8Lt6kQwVpjbhA';
+    var ACCESS_TOKEN = 'pk.eyJ1Ijoiam95ZGVlcDMxNDE1IiwiYSI6ImNqMDU2Njd5ZzAyeGUzOHBraDdnN3I1cDAifQ.XyU5-ynhWo1SEqizLSwuXw';
     var MB_ATTR = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>';

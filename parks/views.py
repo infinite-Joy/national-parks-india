@@ -55,6 +55,7 @@ class District(db.Model):
 
 @app.route('/')
 def index():
+    # import pdb; pdb.set_trace()
     districts = District.query.all()
     return render_template('index.html', districts=districts)
 
@@ -91,10 +92,11 @@ def get_national_parks_data(db):
                             "District {did}".format(did=did),
                             BASECOORDS[0], BASECOORDS[1])
         db.session.add(district)
-        for pid in points:
+        for indx, pid in enumerate(points):
             lat = parks_dict.get(pid)[0]
             lng = parks_dict.get(pid)[1]
-            row = Point(pid + number_points * did, district, lat, lng)
+            # import pdb; pdb.set_trace()
+            row = Point(indx + number_points * did, district, lat, lng)
             db.session.add(row)
         db.session.commit()
 
